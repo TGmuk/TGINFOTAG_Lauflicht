@@ -4,7 +4,7 @@
 
 
 
-InterruptIn taste(PA_1);
+InterruptIn button(PA_1);
 
 DigitalOut pc0(PC_0);
 DigitalOut pc1(PC_1);
@@ -17,24 +17,21 @@ DigitalOut pc7(PC_7);
 
 bool laufen = true;
 
-void abc() {
-    if(laufen == true){
-        laufen = false;
-    }else{
-        laufen = true;
-    }
+void buttonISR() {
+    laufen = !laufen;
 }
 
 int main(){
 
-    taste.mode(PullDown);
-    taste.rise(&abc);
-    taste.enable_irq();
+    button.mode(PullDown);
+    button.rise(&buttonISR);
+    button.enable_irq();
 
     while (true){
         
         if (laufen) {
 
+            // Dafür ist Justin verantwortlich. Ich lasse das einfach mal so ...
             pc0 = 1;
             ThisThread::sleep_for(WAIT);
             pc0 = 0;
