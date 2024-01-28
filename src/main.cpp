@@ -2,7 +2,7 @@
 
 #define WAIT 100ms
 
-bool laufen = true;
+
 
 InterruptIn taste(PA_1);
 
@@ -14,6 +14,8 @@ DigitalOut pc4(PC_4);
 DigitalOut pc5(PC_5);
 DigitalOut pc6(PC_6);
 DigitalOut pc7(PC_7);
+
+bool laufen = true;
 
 void abc() {
     if(laufen == true){
